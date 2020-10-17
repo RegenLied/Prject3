@@ -14,17 +14,24 @@ public class BattleRoyale {
 
 
         try{
-            ArrayList<SuperHero> heroes = SuperHero.readDataFile("/Users/yulinliu/Desktop/CSC-208-002/project-3-powers-RegenLied/SuperheroDataset.csv");
+            System.out.println(System.getProperty("user.dir"));
+            ArrayList<SuperHero> heroes = SuperHero.readDataFile("./SuperheroDataset.csv");
+            int count = 0;
             for(int i = 0; i < heroes.size(); i++){
                 for(int j = i + 1; j < heroes.size(); j++){
-                    if(damageA > damageB) int damageA = heros.get(i).attack(heros.get(j));
-                    int damageB = heros.get(j).attack(heros.get(i));
-                        System.out.println("A wins");
-                    else if(damageB > damageA)
-                        System.out.println("B wins");
+                    int damageA = heroes.get(i).attack(heroes.get(j));
+                    int damageB = heroes.get(j).attack(heroes.get(i));
+                    String AlignmentA = heroes.get(i).getAlignment();
+                    String AlignmentB = heroes.get(j).getAlignment();
+
+                    if(damageA > damageB && AlignmentA != AlignmentB)
+                        System.out.println(heroes.get(i).getName() + " wins");
+
+                    else if(damageB > damageA && AlignmentB != AlignmentA)
+                        System.out.println(heroes.get(j).getName() + " wins");
                     else
                         System.out.println("it was a tie"); }
-        }
+            }
         }
 
         catch (Exception e){
